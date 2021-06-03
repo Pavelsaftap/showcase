@@ -16,6 +16,7 @@ class MarkModel(models.Model):
     Name = models.CharField(max_length=50)
     UserId = models.CharField(max_length=20)
     Text = models.CharField(max_length=500)
+    Score = models.IntegerField()
 
 
 class ProjectModel(models.Model):

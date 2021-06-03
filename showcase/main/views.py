@@ -9,10 +9,10 @@ def main(request):
 
 
 def authorization(request):
-    return HttpResponse('Authorization')
+    return render(request, "authorization/authorization.html")
 
 
 def search(request):
-    return HttpResponse("Search")
+    return render(request, "search/search.html")
 
 
