@@ -22,7 +22,8 @@
     <p> Навигация <p>
     <a href = "http://127.0.0.1:8000/" > Main  </a>
     <a href = "http://127.0.0.1:8000/search" > Search  </a>
-    <a href = "http://127.0.0.1:8000/authorization" > Authorization  </a>
+    <a href = "http://127.0.0.1:8000/register" > reg  </a>
+    <a href = "http://127.0.0.1:8000/login" > login  </a>
 
     <p> {{ content }}  </p>
 
@@ -33,6 +34,7 @@
             <p>Описание: {{project.Description}}</p>
             <a href = {{project.GithubLink}} >Github repository</a>
             <p>Город: {{project.City.Name}}</p>
+            <p>AvgMark:{{project.AverageMark}}/100</p>
             <div>
                 <p>Теги:</p>
                 {% for obj in project.Type.all %}
@@ -50,6 +52,8 @@
                     </div>
                 {% endfor %}
             </div>
+
+            <a href = "http://127.0.0.1:8000/project/id={{project.id}}">Подробнее</a>
 
 
 

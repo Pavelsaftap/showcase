@@ -13,16 +13,23 @@ from django.contrib.auth.views import LoginView
 def main(request):
     access_level = 1
     projects = ProjectModel.objects.all()
+
     projects_list = []
     for project in projects:
-        if (project.AccessLevel<=access_level):
-            projects_list.append(project)
+        if (project.AccessLevel>access_level or project.ShowMainPage==0):
+            continue
+
+        sum = 0
+        count = 0
+        for mark in project.Marks.all():
+            sum += mark.Score
+            count += 1
+        project.AverageMark = sum // count
+        project.save()
+
+        projects_list.append(project)
 
     return render(request, "main/main.html", {'content': 'Проектики', 'title': 'main', 'projects': projects_list})
-
-
-def authorization(request):
-    return render(request, "authorization/authorization.html")
 
 
 def search(request):
@@ -36,6 +43,13 @@ def project_page(request, project_id):
         access_level = 0
         if (project.AccessLevel > access_level):
             result = 1
+        sum = 0
+        count = 0
+        for mark in project.Marks.all():
+            sum += mark.Score
+            count += 1
+        project.AverageMark = sum // count
+        project.save()
     except:
         result = 2
 
