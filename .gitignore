@@ -1,4 +1,5 @@
 .idea/
+.idea
 
 ### Django ###
 *.log
@@ -37,6 +38,7 @@ media
 .Python
 env/
 venv/
+venv
 .venv
 ENV/
 build/
