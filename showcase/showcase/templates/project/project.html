@@ -16,6 +16,8 @@
 
         </style>
 
+
+
 </head>
 <body>
 
@@ -23,12 +25,9 @@
     <a href = "http://127.0.0.1:8000/" > Main  </a>
     <a href = "http://127.0.0.1:8000/search" > Search  </a>
     <a href = "http://127.0.0.1:8000/register" > reg  </a>
-    <a href = "http://127.0.0.1:8000/login" > login  </a>
+        <a href = "http://127.0.0.1:8000/login" > login  </a>
 
-    <p> {{ content }}  </p>
-
-    {% for project in projects %}
-
+    {% if access == 0 %}
         <div>
             <p>Название: {{project.Name}}</p>
             <p>Описание: {{project.Description}}</p>
@@ -53,17 +52,16 @@
                 {% endfor %}
             </div>
 
-            <a href = "http://127.0.0.1:8000/project/id={{project.id}}">Подробнее</a>
-
 
 
         </div>
+    {% elif access == 1 %}
+        <p>Нет доступа</p>
 
-
-    {% endfor %}
-
-
-
-
+    {% elif access == 2 %}
+        <p>Статья не найдена</p>
+    {% else %}
+        <p>Ты все испортил... Уходи</p>
+    {% endif %}
 </body>
 </html>
