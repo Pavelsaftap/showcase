@@ -26,9 +26,7 @@
     <a href = "http://127.0.0.1:8000/search" > Search  </a>
     <a href = "http://127.0.0.1:8000/authorization" > Authorization  </a>
 
-    <p> {{ content }}  </p>
-
-
+    {% if access == 0 %}
         <div>
             <p>Название: {{project.Name}}</p>
             <p>Описание: {{project.Description}}</p>
@@ -55,10 +53,13 @@
 
 
         </div>
+    {% elif access == 1 %}
+        <p>Нет доступа</p>
 
-
-
-
-
+    {% elif access == 2 %}
+        <p>Статья не найдена</p>
+    {% else %}
+        <p>Ты все испортил... Уходи</p>
+    {% endif %}
 </body>
 </html>

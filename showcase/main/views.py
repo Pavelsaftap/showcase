@@ -29,14 +29,23 @@ def search(request):
     return render(request, "search/search.html")
 
 
-def project_page(request):
-    project = ProjectModel.objects.get(id=2)
-    access_level = 0
+def project_page(request, project_id):
+    result = 0
+    try:
+        project = ProjectModel.objects.get(id=project_id)
+        access_level = 0
+        if (project.AccessLevel > access_level):
+            result = 1
+    except:
+        result = 2
 
-    if (project.AccessLevel>access_level):
-        return render(request, "default.html", {'content': 'Нет доступа', 'title': 'Project'})
+    if (result==0):
+        return render(request, "project/project.html", {'title': 'Project', "access": result, 'project': project})
     else:
-        return render(request, "project/project.html", {'content': 'Проектик', 'title': 'Project', 'project': project})
+        return render(request, "project/project.html", {'title': 'Project', "access": result})
+
+
+
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
