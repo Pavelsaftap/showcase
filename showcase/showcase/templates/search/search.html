@@ -4,6 +4,16 @@
 
     <title>{% block title %}search{% endblock %}</title>
     <meta charset="UTF-8">
+    <style>
+            div{
+                margin: 5px;
+                padding: 10px;
+                border-radius: 20px;
+                border-style: solid;
+                border-width: 1px;
+            }
+
+        </style>
 
 </head>
 <body>
@@ -11,9 +21,52 @@
     <a href = "http://127.0.0.1:8000/" > Main  </a>
     <a href = "http://127.0.0.1:8000/search" > Search  </a>
     <a href = "http://127.0.0.1:8000/register" > reg  </a>
-        <a href = "http://127.0.0.1:8000/login" > login  </a>
+    <a href = "http://127.0.0.1:8000/login" > login  </a>
 
 
+    <p>Sort by:</p>
+    {% for element in sort_list %}
+
+        <br><a href = {{element.link}} > {{element.val}} </a></br>
+
+
+    {% endfor %}
+
+
+    {% for project in projects %}
+
+        <div>
+            <p>Название: {{project.Name}}</p>
+            <p>Описание: {{project.Description}}</p>
+            <a href = {{project.GithubLink}} >Github repository</a>
+            <p>Город: {{project.City.Name}}</p>
+            <p>AvgMark:{{project.AverageMark}}/100</p>
+            <div>
+                <p>Теги:</p>
+                {% for obj in project.Type.all %}
+                    <p>{{obj.Name}}</p>
+                {% endfor %}
+            </div>
+
+            <div>
+                <p>Комменты:</p>
+                {% for obj in project.Marks.all %}
+                    <div>
+                        <p>{{obj.Name}}</p>
+                        <p>{{obj.Text}}</p>
+                        <p>Score: {{obj.Score}}/100 </p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <a href = "http://127.0.0.1:8000/project/id={{project.id}}">Подробнее</a>
+
+
+
+        </div>
+
+
+    {% endfor %}
 
 
 </body>
