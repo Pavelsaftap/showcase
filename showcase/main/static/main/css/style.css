@@ -1,0 +1,128 @@
+/* база */
+
+body {
+    font-family: Arial Regular, Arial, sans-serif;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    padding-top: 25px;
+    padding-bottom: 30px;
+}
+
+ul, li {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.menu {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#navs {
+    margin-top: 15px;
+    box-sizing: border-box;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    font-size: 16px;  
+}
+
+.search-input {
+    padding: 10px;
+    margin-top: 18px;
+    font-weight: 400;
+    width: 232px;
+    height: 28px;
+    border-radius: 5px;
+    border: 1px solid #d7d7d7;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    color: #8c8c8c;
+    text-align: left;
+    position: absolute;
+    text-rendering: auto;
+    display: inline-block;
+    font-size: 13px;
+  }
+
+.sign-button {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ffcc00;
+    box-sizing: border-box;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+    font-size: 13px;
+  }
+
+.go-button {
+    margin-top: 18px;
+    border-radius: 5px;
+    background-color: #ffcc00;
+    box-sizing: border-box;
+    color: #333333;
+    text-align: center;
+    line-height: normal;
+    font-size: 13px;
+}
+
+.rectangle {
+    top: 110px;
+    height: 120px;
+    display: flex;
+    background-color: rgba(242, 242, 242, 1);
+  }
+
+h1 {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 48px;
+    text-align: left;
+    padding: 30px;
+}
+
+h2 {
+    width: 282px;
+    height: 28px;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    font-weight: 700;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+  }
+
+p {
+    font-size: 14px;
+}
+
+.list-group-item {
+    font-size: 14px;
+    padding: 0.2rem 0.6rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 0.6rem 0.6rem;
+}
+
+h5 {
+    font-weight: 700;
+}
+
+.card-link {
+    font-size: 12px;
+}
+
+.col {
+    padding-bottom: 15px;
+}
