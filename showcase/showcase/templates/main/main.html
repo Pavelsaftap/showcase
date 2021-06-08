@@ -82,7 +82,7 @@
               <div class="col">
                 <div class="card" style="width: 22rem;">
                   <a href="http://127.0.0.1:8000/project/id={{project.id}}">
-                    <img src="{% static 'main/images/example.jpg' %}" class="card-img-top" alt="...">
+                    <img src="{{ project.photo_url }}" class="card-img-top" alt="...">
                   </a>
                   <div class="card-body">
                     <h5 class="card-title">Название {{project.Name}}</h5>
