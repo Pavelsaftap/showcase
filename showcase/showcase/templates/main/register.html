@@ -1,12 +1,19 @@
-<h1>{{title}}</h1>
+{% extends "main/base.html" %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
 
 <form method="post">
     {% csrf_token %}
+<div class="form-group">
+    {% for f in form %}
+        <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+</div>
 
-{% for f in form %}
-<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-<div class="form-error">{{ f.errors }}</div>
-{% endfor %}
-
-    <button type="submit">Регистрация</button>
+    <button type="submit" class="btn btn-warning">Регистрация</button>
 </form>
+
+{% endblock %}

@@ -1,12 +1,11 @@
 from django.shortcuts import render
+from django.db.models import Q
 from .models import CityModel, TypeModel, MarkModel, ProjectModel
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from .forms import RegisterUserForm, LoginUserForm
 from django.shortcuts import redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import logout, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from random import shuffle
 
@@ -16,7 +15,7 @@ def check_access(request, projects, check_main=0):
     projects_list = []
 
     for project in projects:
-        if (project.AccessLevel > access_level or (project.ShowMainPage == 0 and check_main == 1)):
+        if project.AccessLevel > access_level or (project.ShowMainPage == 0 and check_main == 1):
             continue
 
         sum = 0
@@ -36,7 +35,8 @@ def main(request):
     projects = ProjectModel.objects.all()
     projects_list = check_access(request, projects, 1)
 
-    return render(request, "main/main.html", {'content': 'Проектики', 'title': 'main', 'projects': projects_list})
+    return render(request, "main/main.html", {'content': 'Проектики', 'title': 'Яндекс.Лицей: Проекты',
+                                              'projects': projects_list})
 
 
 def parse_search(params):
@@ -115,10 +115,37 @@ def project_page(request, project_id):
         return render(request, "project/project.html", {'title': 'Project', "access": result})
 
 
+class SearchResultsView(ListView):
+    model = ProjectModel
+    template_name = 'search/search_results.html'
+
+    def get_queryset(self):
+        if self.request.GET.get('search'):
+            query = self.request.GET.get('search')
+            object_list = ProjectModel.objects.filter(
+                Q(Name__icontains=query) | Q(Description__icontains=query)
+            )
+            return object_list
+        return ProjectModel.objects.all
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(SearchResultsView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Поиск по проектам'
+        if self.request.GET.get('search'):
+            context['search_request'] = self.request.GET.get('search')
+        return context
+
+
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'main/register.html'
     success_url = reverse_lazy('login')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RegisterUser, self).get_context_data(**kwargs)
+        context['title'] = 'Регистрация'
+
+        return context
 
 
 class LoginUser(LoginView):
@@ -127,6 +154,12 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('index')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(LoginUser, self).get_context_data(**kwargs)
+        context['title'] = 'Авторизация'
+
+        return context
 
 
 def logout_user(request):
