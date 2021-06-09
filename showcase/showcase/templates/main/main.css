@@ -1,7 +1,60 @@
+/* база */
 
-div{
-    margin: 15px;
-    padding: 20px;
-    color:red;
+body {
+    font-family: Arial Regular, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+} 
 
+.head {
+    background-color: rgba(242, 242, 242, 1);
+    padding: 0.4em;
+    font-weight: 400;
+}
+
+.project-inf {
+    margin: 0 1em;
+}
+
+.project-desc {
+    margin: 1em 1em;
+}
+
+.nav-link {
+    padding: 0.2rem 0.6rem;
+    color: #333;
+}
+
+.my-button {
+    background-color: #ffcc00;
+} 
+
+.bottom-button {
+    width: 100%; 
+    text-align: center;
+}
+
+.user-pic {
+  border-radius: 50%;
+  width: 128px;
+  height: 128px;
+  margin-bottom: 1em;
+}
+
+.user-name {
+    margin: 1em;
+    font-size: 16px;
+}
+
+.card {
+    width: 24rem;
+}
+
+.card-body {
+    padding: 0.6rem 0.6rem;
+}
+
+.card-link {
+    font-size: 12px;
+    padding: 0 0;
 }
