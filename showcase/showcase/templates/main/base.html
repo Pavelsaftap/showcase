@@ -13,54 +13,37 @@
 
 </head>
 <body>
-
-<header id="header" class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <a href="{% url 'index' %}">
-                    <img src="{% static 'main/images/logo_projects.png' %} " alt="ПРОЕКТЫ" class="logo " width="254px"
-                         height="47px">
-                </a>
-
-            </div>
-            <div class="col-lg-6">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="navs" aria-current="page" href="{% url 'index' %}">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="navs" href={% url "search_results" %}>Проекты</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="navs" href="https://yandexlyceum.ru/">Про Яндекс.Лицей</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <form name="search" action="{% url 'search_results' %}" method="get"
-                      class="form-inline form-search pull-right">
-                    <div class="input-group">
-                        <input class="form-control search-input" id="searchInput" type="text" name="search"
-                               placeholder="Введите название проекта...">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn go-button" style="background-color: #ffcc00;">GO</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-1">
-                {% if request.user.is_authenticated %}
-                    <a href="{% url "logout" %}" class="btn sign-button" role="button">Выйти</a>
+    <header class="p-3 navbar-light text-black">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="{% url 'index' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+              <img class="bi me-2" width="254" height="47" role="img" alt="logo" aria-label="Logo" src="{% static 'main/images/logo_projects.png' %}"></img>
+            </a>
+    
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="{% url 'index' %}" class="nav-link px-2 text-black" aria-current="page">Главная</a></li>
+              <li><a href={% url "search_results" %} class="nav-link px-2 text-black">Проекты</a></li>
+              <li><a href="https://yandexlyceum.ru/" class="nav-link px-2 text-black">Про Яндекс.Лицей</a></li>
+            </ul>
+            <form name="search" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{% url 'search_results' %}" method="get" class="form-inline form-search pull-right">
+              <div class="input-group">
+                <input class="form-control form-control-dark" id="searchInput" type="text" name="search" placeholder="Введи название...">
+                <div class="input-group-btn">
+                  <button type="submit" class="btn my-button">GO</button>
+                </div>
+              </div>
+            </form>  
+  
+            <div class="text-end">
+               {% if request.user.is_authenticated %}
+                    <a href="{% url "logout" %}" class="btn my-button" role="button">Войти</a>
                 {% else %}
-                    <a href="{% url "login" %}" class="btn sign-button" role="button">Войти</a>
+                    <a href="{% url "login" %}" class="btn my-button" role="button">Выйти</a>
                 {% endif %}
-
             </div>
+          </div>
         </div>
-    </div>
-
-</header>
+    </header>
 
 {% block content %}
 {% endblock %}
