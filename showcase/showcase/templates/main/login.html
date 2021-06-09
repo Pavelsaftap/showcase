@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+{% block title %} {{ title }} {% endblock %}
+
+
+{% block content %}
+<h1>{{title}}</h1>
+<a href="{% url 'register' %}">У вас еще нет аккаунта?</a>
+<form method="post" class="mb-3 row">
+    {% csrf_token %}
+<div class="form-group">
+<div class="form-error">{{ form.non_field_errors }}</div>
+
+{% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+
+{% endfor %}
+
+    <button type="submit" class="btn btn-warning">Войти</button>
+</div>
+</form>
+
+{% endblock %}

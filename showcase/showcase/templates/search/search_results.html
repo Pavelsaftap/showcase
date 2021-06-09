@@ -1,0 +1,59 @@
+{% extends "main/base.html" %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+    <div class="col-lg-3">
+        <form name="search" action="{% url 'search_results' %}" method="get"
+              class="form-inline form-search pull-right">
+            <div class="input-group">
+                {% if search_request %}
+                <input value='{{ search_request }}' class="form-control search-input" id="searchInput" type="text"
+                       name="search" placeholder="Введите название проекта...">
+                {% else %}
+                <input class="form-control search-input" id="searchInput" type="text"
+                       name="search" placeholder="Введите название проекта...">
+                {% endif %}
+                <div class="input-group-btn">
+                    <button type="submit" class="btn go-button" style="background-color: #ffcc00;">Поиск</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <ul>
+        <div class="row row-cols-1 row-cols-md-3 g-9">
+            {% for project in object_list %}
+
+
+                <div class="col">
+
+                    <div class="card" style="width: 22rem;">
+                        <a href="{% url "project" project.id %}">
+                            <img src="{{ project.photo_url }}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Название {{ project.Name }}</h5>
+                            <p class="card-text">Краткое описание {{ project.Description }}, должно составлять основную
+                                часть
+                                содержимого проекта. Краткое описание, должно составлять основную часть содержимого
+                                проекта.
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Тема:</li>
+
+                            <li class="list-group-item">Оценка: {{ project.AverageMark }}/100</li>
+                            <li class="list-group-item">Город: {{ project.City.Name }}</li>
+                        </ul>
+
+                        <div class="card-body">
+                            <a href="{{ project.GithubLink }}" class="card-link">Посмотреть на GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </ul>
+
+{% endblock %}
