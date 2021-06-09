@@ -3,66 +3,75 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
+
+<section>
+  <div class="container-fluid">
+    <p class="display-2 head">Витрина проектов</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
     <div class="row">
-
-        <div class="container-fluid rectangle"><h1>Витрина проектов</h1></div>
-        <div class='col-lg-6'>
-          <img src="{% static 'main/images/rect-tr-st.png' %}" alt="" class="rounded float-start img-fluid" width="558px" height="470px" top="120px">
-        </div>
+      <div class="col-lg-7">
+        <h2>Про витрину и проекты</h2>
+        <p>Какой-то текст. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. </p> 
+        <h2>Как добавить свой проект?</h2>
+        <p>Какой-то текст. Proin gravida dolor sit amet lacus accumsan et viverra j
+          usto commodo. Proin sodales pulvinar sic tempor. Sociis natoque p
+          enatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam 
+          fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin 
+          sapien nunc accuan eget. 
+        </p>
       </div>
-      <div class="row">
-        <div class="col-lg-5">
-          <h1>Про витрину и проекты</h1>
-          <p class="left: 50px">Какой-то текст.      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.
-
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. </p>
-        </div>
+        <div class='col-lg-5'>
+        <img src="{% static 'main/images/rect-tr-st.png' %}" alt="" class="rounded float-start img-fluid" width="558px" height="470px" top="120px">
       </div>
+    </div> 
+  </div>
+</section>
+
     <section id="projects" class="projects">
       <div class="container">
-        <br>
         <h1>Проекты</h1>
         <br>
         <div class="row row-cols-1 row-cols-md-3 g-9">
             {% for project in projects %}
 
-
-              <div class="col">
-
-                <div class="card" style="width: 22rem;">
+              <div class="col" style="padding-bottom: 2rem;">
+                <div class="card">
                   <a href="{% url "project" project.id %}">
                     <img src="{{ project.photo_url }}" class="card-img-top" alt="...">
                   </a>
-                  <div class="card-body">
+                  <div class="card-body" style="padding: 1rem;">
                     <h5 class="card-title">Название {{project.Name}}</h5>
-                    <p class="card-text">Краткое описание {{project.Description}}, должно составлять основную часть содержимого проекта. Краткое описание, должно составлять основную часть содержимого проекта.
+                    <p class="card-text" style="font-size: 14px;">Краткое описание {{project.Description}}
                     </p>
                   </div>
-                  <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Тема: </li>
-
+                  <ul class="list-group list-group-flush" style="font-size: 16px;">
+                    <li class="list-group-item">Тема/Теги: {% for obj in project.Type.all %}</li>
                     <li class="list-group-item">Оценка: {{project.AverageMark}}/100</li>
-                    <li class="list-group-item">Город: {{project.City.Name}}</li>
+                    <li class="list-group-item" >Город: {{project.City.Name}}</li>
                   </ul>
-
                   <div class="card-body">
-                    <a href="{{project.GithubLink}}" class="card-link">Посмотреть на GitHub</a>
+                    <a href="{{project.GithubLink}}" class="card-link">Посмотреть на Github</a>
                   </div>
                 </div>
               </div>
-                {% endfor %}
+
+            {% endfor %}
 
         </div>
         <div>
-          <a href="{% url "search_results" %}"><button class="btn sign-button left: 50%" type="button">Больше проектов!</button></a>
+          <a href="{% url "search_results" %}"><button class="btn my-button bottom-button" type="button">Больше проектов!</button></a>
         </div>
       </div>
     </section>
 
     <footer id="footer" class="footer">
-      <div class="conteiner-fluid rectangle">
+      <div class="conteiner-fluid">
         Contacts
       </div>
     </footer>
 {% endblock %}
-
